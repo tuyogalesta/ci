@@ -23,6 +23,12 @@ class Render
         if($var1 == $var2){
         	return 'selected';
         }
+	}
+	
+	public static function selected_1($var1,$var2) {
+        if($var1 == $var2){
+        	return 'selected="selected"';
+        }
     }
 
 	/**
@@ -299,6 +305,7 @@ class Render
 
 		return $condition;
 	}
+	
 	
 	
 }

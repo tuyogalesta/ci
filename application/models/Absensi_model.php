@@ -44,6 +44,63 @@ class Absensi_model extends CI_Model{
 		// $this->db->join('klien','klien.id = personil.klien_id');
 		return $this->db->get($this->table);
 	}
+
+	public function filter($bulan,$tahun,$status){
+		$this->db->where('MONTH(absensi.tgl_absensi)',$bulan);
+		$this->db->where('YEAR(absensi.tgl_absensi)',$tahun);
+		$this->db->where('absensi_detail.status',$status);
+		$this->db->join('klien','klien.id = personil.klien_id');
+		$this->db->join('absensi_detail','personil.id = absensi_detail.personil_id');
+		$this->db->join('absensi','absensi.id = absensi_detail.absensi_id');
+		return $this->db->get('personil')->num_rows();
+	}
+
+	public function filter_tidak_hadir($bulan,$tahun){
+		$this->db->where('MONTH(absensi.tgl_absensi)',$bulan);
+		$this->db->where('YEAR(absensi.tgl_absensi)',$tahun);
+		$this->db->where('absensi_detail.status !=','Hadir');
+		$this->db->where('absensi_detail.status !=','Off');
+		$this->db->join('klien','klien.id = personil.klien_id');
+		$this->db->join('absensi_detail','personil.id = absensi_detail.personil_id');
+		$this->db->join('absensi','absensi.id = absensi_detail.absensi_id');
+		return $this->db->get('personil')->num_rows();
+	}
+
+	public function getDataLaporan($klein_id,$tahun,$grafik = false){	
+		$bulan = ['Januari','Februari','Maret','April','Mei',"Juni","Juli","Agustus","September","Oktober","Nopember","Desember"];
+		$data = [];
+		$tidak_hadir = [];
+		foreach($bulan as $key => $value){
+			$array['bulan'] = $value;
+			$array['sakit'] = $this->filter($key,$tahun,"Sakit");
+			$array['hadir'] = $this->filter($key,$tahun,"Hadir");
+			$array['tanpa_keterangan'] = $this->filter($key,$tahun,"Tanpa Keterangan");
+			$array['off'] = $this->filter($key,$tahun,"Off");		
+			$array['izin'] = $this->filter($key,$tahun,"Izin");
+
+			array_push($tidak_hadir,$this->filter_tidak_hadir($key,$tahun));
+
+			$data[] = $array;
+		}	
+		if(!$grafik){
+			return $data;
+		}else{
+			return json_encode($tidak_hadir);
+		}
+			
+	}
+
+	public function getAnggotaMalas($klein_id,$tahun){
+		$this->db->select("personil.id,personil.nama_personil,count(personil.id) as tidak_hadir");
+		$this->db->where('YEAR(absensi.tgl_absensi)',$tahun);
+		$this->db->where('absensi_detail.status !=','Hadir');
+		$this->db->where('absensi_detail.status !=','Off');
+		$this->db->join('klien','klien.id = personil.klien_id');
+		$this->db->join('absensi_detail','personil.id = absensi_detail.personil_id');
+		$this->db->join('absensi','absensi.id = absensi_detail.absensi_id');
+		$this->db->group_by('personil.id');		
+		return $this->db->get('personil');
+	}
 }
 
 	

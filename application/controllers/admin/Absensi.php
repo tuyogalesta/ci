@@ -11,6 +11,11 @@
 			$this->load->model('Personil_model');	
 			$this->load->model('User_model');
 			$this->load->model('Klien_model');
+			if(empty($_SESSION['id'])){
+				$this->session->set_flashdata('status', 'error');
+				$this->session->set_flashdata('text', 'Anda harus login');
+				redirect(base_url().'admin/login');
+			}
 		}
 
 		private function template(){
@@ -35,7 +40,7 @@
         	// echo print_r($jabatan);
         	// exit();
 			return [
-				['label' => 'Tanggal','name' => 'tgl_absensi','type' => 'datepicker'],
+				['label' => 'Tanggal','name' => 'tgl_absensi','type' => 'text','attr' => 'readonly'],
 				['label' => 'klien_id','name' => 'klien_id','type' => 'hidden','value' => $_SESSION['klien_id']],
 				['label' => 'user_id','name' => 'user_id','type' => 'hidden','value' => $_SESSION['id']],
 				

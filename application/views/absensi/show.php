@@ -53,7 +53,7 @@
                             <td><?php echo $value->nama_personil ?></td>
                             <td><?php echo $value->jabatan ?></td>
                             <td>
-                              <select name="detail[<?= $value->p_id ?>]" data-value="<?php echo $value->status ?>" class="form-control">
+                              <select name="detail[<?= $value->p_id ?>]" disabled data-value="<?php echo $value->status ?>" class="form-control">
                                 <option value="Hadir">Hadir</option>
                                 <option value="Izin">Izin</option>
                                 <option value="Sakit">Sakit</option>
@@ -66,7 +66,7 @@
                       </tbody>
                     </tbody>
                   </table>
-                  <a  href="<?php echo base_url() ?>/index" class="btn btn-default">Simpan</a>                
+                  <a  href="<?php echo base_url() ?>/admin/absensi/index" class="btn btn-default">Kembali</a>                
                 </form>           
               </div>
               <!-- /.box-body -->

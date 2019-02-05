@@ -10,6 +10,11 @@
 			$this->load->model('Personil_model');	
 			$this->load->model('User_model');
 			$this->load->model('Klien_model');
+			if(empty($_SESSION['id'])){
+				$this->session->set_flashdata('status', 'error');
+				$this->session->set_flashdata('text', 'Anda harus login');
+				redirect(base_url().'admin/login');
+			}
 		}
 
 		private function template(){
