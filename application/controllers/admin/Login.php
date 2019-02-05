@@ -38,7 +38,7 @@ class Login extends CI_Controller {
 							'klien_id' => $result->klien_id
 						);
 				$this->session->set_userdata($user);
-				redirect(base_url()."admin/user");				
+				redirect(base_url()."admin/home");				
 			}else{
 				// kirim pesan error
 				$this->session->set_flashdata('status', 'error');
