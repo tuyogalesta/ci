@@ -46,6 +46,7 @@ class Absensi_model extends CI_Model{
 	}
 
 	public function filter($bulan,$tahun,$status){
+		$this->db->where('klien.klien_id',$klein_id);
 		$this->db->where('MONTH(absensi.tgl_absensi)',$bulan);
 		$this->db->where('YEAR(absensi.tgl_absensi)',$tahun);
 		$this->db->where('absensi_detail.status',$status);
@@ -56,6 +57,7 @@ class Absensi_model extends CI_Model{
 	}
 
 	public function filter_tidak_hadir($bulan,$tahun){
+		$this->db->where('klien.klien_id',$klein_id);
 		$this->db->where('MONTH(absensi.tgl_absensi)',$bulan);
 		$this->db->where('YEAR(absensi.tgl_absensi)',$tahun);
 		$this->db->where('absensi_detail.status !=','Hadir');
@@ -95,6 +97,7 @@ class Absensi_model extends CI_Model{
 		$this->db->where('YEAR(absensi.tgl_absensi)',$tahun);
 		$this->db->where('absensi_detail.status !=','Hadir');
 		$this->db->where('absensi_detail.status !=','Off');
+		$this->db->where('klien.klien_id',$klein_id);
 		$this->db->join('klien','klien.id = personil.klien_id');
 		$this->db->join('absensi_detail','personil.id = absensi_detail.personil_id');
 		$this->db->join('absensi','absensi.id = absensi_detail.absensi_id');
