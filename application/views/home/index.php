@@ -10,7 +10,7 @@
        <?php echo $template->title ?>      
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?php echo base_url() ?>admin/home "><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">  <?php echo $template->title ?>      </a></li>
       </ol>
     </section>
@@ -23,19 +23,11 @@
         <?php } ?>
         <!-- END ALERT STATUS -->
         <div class="row">        
-          <div class="col-xs-12">
-            <div class="box">
-              <div class="box-header">
-                <h3 class="box-title">Grafik Absensi </h3>                
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                
-              </div>
-              <!-- /.box-body -->
-            </div>
-          </div>        
+          <div class="col-xs-12 text-center" style="padding-top: 50px" >
+            <img src="<?php echo base_url() ?>assets/logo.png" width="250 px" > <br>
+            <font size="5px"><b>PT. Metropolitan Jaya Sukses</b> (cabang Bali)</font>
         </div>
+          </div>  
     </section>
     <!-- /.content -->
   </div>  
