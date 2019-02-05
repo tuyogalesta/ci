@@ -75,10 +75,11 @@
           <a href="<?php echo base_url() ?>admin/home"><i class="fa fa-home"></i> <span>Home</span></a>
         </li>
 
+        <?php if(Render::access(['Eksekutif'])): ?>
         <li class="<?php echo $menu == "laporan" ? "active" : '' ?>">
           <a href="<?php echo base_url() ?>admin/laporan"><i class="fa fa-bar-chart"></i> <span>Laporan</span></a>
         </li>
-
+        <?php endif; ?>
       <?php if(Render::access(['Admin'])): ?>
         <li class="<?php echo $menu == "user" ? "active" : '' ?>">
           <a href="<?php echo base_url() ?>admin/user"><i class="fa fa-user"></i> <span>Manajemen User</span></a>
