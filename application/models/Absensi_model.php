@@ -76,11 +76,11 @@ class Absensi_model extends CI_Model{
 			$array['bulan'] = $value;
 			$array['sakit'] = $this->filter($key,$tahun,"Sakit");
 			$array['hadir'] = $this->filter($key,$tahun,"Hadir");
-			$array['tanpa_keterangan'] = $this->filter($key,$tahun,"Tanpa Keterangan");
+			$array['tanpa_keterangan'] = $this->filter($klein_id,$key,$tahun,"Tanpa Keterangan");
 			$array['off'] = $this->filter($key,$tahun,"Off");		
 			$array['izin'] = $this->filter($key,$tahun,"Izin");
 
-			array_push($tidak_hadir,$this->filter_tidak_hadir($key,$tahun));
+			array_push($tidak_hadir,$this->filter_tidak_hadir($klein_id,$key,$tahun));
 
 			$data[] = $array;
 		}	
