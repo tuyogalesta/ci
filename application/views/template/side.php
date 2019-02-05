@@ -1,4 +1,4 @@
-  <body class="hold-transition skin-red sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
   <header class="main-header">
     <!-- Logo -->
@@ -31,6 +31,7 @@
                 <img src="<?php echo base_url() ?>assets/dist/img/avatar2.png" class="img-circle" alt="User Image">
                 <p>
                   <strong style="text-transform: capitalize;"><?php echo $this->session->nama_user ?></strong><br>
+                  <?php echo $this->session->role ?>
                   
                 </p>
               </li>
@@ -58,7 +59,7 @@
           <img src="<?php echo base_url() ?>assets/dist/img/avatar2.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p style="text-transform: capitalize;"><?php echo "admin" ?></p>
+          <p style="text-transform: capitalize;"><?php echo $this->session->nama_user ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -73,6 +74,11 @@
         <li class="<?php echo $menu == "home" ? "active" : '' ?>">
           <a href="<?php echo base_url() ?>admin/home"><i class="fa fa-home"></i> <span>Home</span></a>
         </li>
+
+        <li class="<?php echo $menu == "laporan" ? "active" : '' ?>">
+          <a href="<?php echo base_url() ?>admin/laporan"><i class="fa fa-bar-chart"></i> <span>Laporan</span></a>
+        </li>
+
       <?php if(Render::access(['Admin'])): ?>
         <li class="<?php echo $menu == "user" ? "active" : '' ?>">
           <a href="<?php echo base_url() ?>admin/user"><i class="fa fa-user"></i> <span>Manajemen User</span></a>
@@ -86,7 +92,7 @@
       <?php endif; ?>
 
       <?php if(Render::access(['ss'])): ?>
-        <li class="<?php echo $menu == "klien" ? "active" : '' ?>">
+        <li class="<?php echo $menu == "absensi" ? "active" : '' ?>">
           <a href="<?php echo base_url() ?>admin/absensi"><i class="fa fa-bank"></i> <span>Absensi</span></a>
         </li>
         <li class="<?php echo $menu == "personil" ? "active" : '' ?>">
